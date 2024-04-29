@@ -1,15 +1,19 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const dotenv = require('dotenv');
+
+dotenv.config();
+dotenv.config({ path: '.env.local' });
 
 const app = express();
 
-const PORT = 3000;
-const HOST = "localhost";
-const API_KEY = ""; // ADD YOUR API KEY HERE
-const API_SERVICE_URL = "https://api.readyplayer.me";
+const PORT = process.env.PORT;
+const HOST = process.env.HOST;
+const API_KEY = process.env.RPM_API_KEY; // Either add your Ready Player Me API key here, or add it as an env var.
+const API_SERVICE_URL = process.env.API_SERVICE_URL;
 
 function authCheck() {
-    // ADD YOUR CUSTOM AUTHORIZATION LOGIC HERE
+    // Add you custom authorization logic here.
     return true;
  }
 
